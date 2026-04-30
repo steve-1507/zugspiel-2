@@ -1,14 +1,14 @@
 extends Node3D
+
 @onready var path: Path3D = $"."
+
 func _ready() -> void:
 	if path == null:
 		return
-	var schiene = load("res://schiene.obj")
+
 	var length := path.curve.get_baked_length()
-	var step := 0.5
 	var d := 0.0
-	var prev_pos: Vector3
-	var first := true
+
 	while d <= length:
 		var pos := path.curve.sample_baked(d)
 		if not first:
