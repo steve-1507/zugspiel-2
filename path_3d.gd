@@ -19,7 +19,7 @@ func _ready() -> void:
 			rail.mesh = schiene
 			rail.position = mid
 			rail.scale = Vector3(dist, 1.0, 1.0)
-			rail.rotation_degrees = Vector3i(90, 0, 0)
+			rail.rotation_degrees = Vector3i(pos)
 			rail.basis = Basis.looking_at(diff.normalized(), Vector3.UP)
 			add_child(rail)
 		prev_pos = pos
