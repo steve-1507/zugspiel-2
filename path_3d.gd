@@ -9,9 +9,9 @@ func _ready() -> void:
 	var d := 0.0
 	var prev_pos: Vector3
 	var first := true
+	var rot : Vector3
 	while d <= length:
 		var pos := path.curve.sample_baked(d)
-		var rot := path.curve.sample_baked_with_rotation()
 		if not first:
 			var mid := (prev_pos + pos) / 2.0
 			var diff := pos - prev_pos
@@ -20,9 +20,7 @@ func _ready() -> void:
 			rail.mesh = schiene
 			rail.position = mid
 			rail.scale = Vector3(dist, 1.0, 1.0)
-			rail.rotation_degrees = Vector3i(rotation)
-			print(rail.rotation_degrees)
-			rail.basis = Basis.looking_at(diff.normalized(), Vector3.UP)
+			rail.basis = path.curve.sample_baked_with_rotation(d).basis.get_rotation_quaternion()
 			add_child(rail)
 		prev_pos = pos
 		first = false
