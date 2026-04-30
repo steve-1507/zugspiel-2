@@ -11,11 +11,17 @@ func _ready() -> void:
 
 	while d <= length:
 		var pos := path.curve.sample_baked(d)
-
-		var mi := MeshInstance3D.new()
-		mi.mesh = SphereMesh.new()
-		mi.position = pos
-		mi.scale = Vector3.ONE * 0.3
-		add_child(mi)
-
-		d += 1.0
+		if not first:
+			var mid := (prev_pos + pos) / 2.0
+			var diff := pos - prev_pos
+			var dist := diff.length()
+			var rail := MeshInstance3D.new()
+			rail.mesh = schiene
+			rail.position = mid
+			rail.scale = Vector3(dist, 1.0, 1.0)
+			rail.rotation_degrees = Vector3i(pos)
+			rail.basis = Basis.looking_at(diff.normalized(), Vector3.UP)
+			add_child(rail)
+		prev_pos = pos
+		first = false
+		d += step

@@ -17,4 +17,3 @@ func _physics_process(delta):
 	#velocity = transform.basis.z * gas * speed
 	#move_and_slide()
 	#print(velocity)
-	print(Path.progress)
