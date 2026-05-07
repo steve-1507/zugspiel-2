@@ -15,12 +15,12 @@ func _ready() -> void:
 			var mid := (prev_pos + pos) / 2.0
 			var diff := pos - prev_pos
 			var dist := diff.length()
-			var transform := path.curve.sample_baked_with_rotation(d)
 			var rail := MeshInstance3D.new()
 			rail.mesh = schiene
 			rail.position = mid
 			rail.scale = Vector3(dist, 1.0, 1.0)
-			rail.basis = transform.basis
+			rail.rotation = global_transform.basis.get_euler() * (180.0 / PI) * Vector3(0, 1, 0)
+			print(rail.rotation_degrees)
 			path.add_child(rail)
 		prev_pos = pos
 		first = false

@@ -16,4 +16,3 @@ func _physics_process(delta):
 	# Bewegung nach vorne (lokaler Z-Achse)
 	#velocity = transform.basis.z * gas * speed
 	#move_and_slide()
-	print(global_transform.basis.get_euler() * (180.0 / PI))
